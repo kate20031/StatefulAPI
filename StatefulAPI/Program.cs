@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("SeriesDbContext") ?? throw new InvalidOperationException("Connection string 'SeriesDbContext' not found.");
+
+builder.Services.AddDbContext<SeriesDbContext>(options => options.UseNpgsql(connectionString));
 
 // Add services to the container.
 
