@@ -12,15 +12,27 @@ public class SeriesController : ControllerBase
         _context = context;
     }
 
+    /// <summary>
+    /// Retrieves all TV series.
+    /// </summary>
+    /// <returns>A list of all TV series.</returns>
     // GET: api/Serie
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Serie>>> GetSerie()
     {
         return await _context.Series.ToListAsync();
     }
 
+    /// <summary>
+    /// Retrieves a TV series by its ID.
+    /// </summary>
+    /// <param name="serieid">The ID of the series.</param>
+    /// <returns>The requested TV series.</returns>
     // GET: api/Serie/5
     [HttpGet("{serieid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<Serie>> GetSerie(int serieid)
     {
         var serie = await _context.Series.FindAsync(serieid);
@@ -33,9 +45,18 @@ public class SeriesController : ControllerBase
         return serie;
     }
 
+    /// <summary>
+    /// Updates an existing TV series.
+    /// </summary>
+    /// <param name="serieid">The ID of the series to update.</param>
+    /// <param name="serie">The updated series information.</param>
+    /// <returns>No content if the update is successful.</returns>
     // PUT: api/Serie/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{serieid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> PutSerie(int? serieid, Serie serie)
     {
         if (serieid != serie.Serieid)
@@ -64,9 +85,15 @@ public class SeriesController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Creates a new TV series.
+    /// </summary>
+    /// <param name="serie">The series to create.</param>
+    /// <returns>The newly created TV series.</returns>
     // POST: api/Serie
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<Serie>> PostSerie(Serie serie)
     {
         _context.Series.Add(serie);
@@ -75,8 +102,15 @@ public class SeriesController : ControllerBase
         return CreatedAtAction("GetSerie", new { serieid = serie.Serieid }, serie);
     }
 
+    /// <summary>
+    /// Deletes a TV series.
+    /// </summary>
+    /// <param name="serieid">The ID of the series to delete.</param>
+    /// <returns>No content if the deletion is successful.</returns>
     // DELETE: api/Serie/5
     [HttpDelete("{serieid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteSerie(int? serieid)
     {
         var serie = await _context.Series.FindAsync(serieid);
