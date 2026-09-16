@@ -1,13 +1,19 @@
 using Microsoft.EntityFrameworkCore;
-var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("SeriesDbContext") ?? throw new InvalidOperationException("Connection string 'SeriesDbContext' not found.");
+using StatefulAPI.Models.EntityFramework;
 
-builder.Services.AddDbContext<SeriesDbContext>(options => options.UseNpgsql(connectionString));
+var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("SeriesDbContext")
+    ?? throw new InvalidOperationException(
+        "Connection string 'SeriesDbContext' not found."
+    );
+
+builder.Services.AddDbContext<SeriesDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
