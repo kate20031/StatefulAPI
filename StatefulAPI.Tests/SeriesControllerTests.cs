@@ -67,6 +67,9 @@ namespace StatefulAPI.Tests
             controller = new SeriesController(context);
         }
 
+        /// <summary>
+        /// Verifies that GetSerie returns the expected series from the database.
+        /// </summary>
         [TestMethod]
         public void TestGetSeries()
         {
@@ -84,6 +87,10 @@ namespace StatefulAPI.Tests
             }
         }
 
+
+        /// <summary>
+        /// Verifies that GetSerie returns the correct series for an existing ID.
+        /// </summary>
         [TestMethod]
         public void TestGetSeriesByID()
         {
@@ -92,6 +99,10 @@ namespace StatefulAPI.Tests
             CompareSeries(expectedSeries[0], result.Value);
         }
 
+
+        /// <summary>
+        /// Verifies that GetSerie returns a 404 Not Found result when the requested ID does not exist.
+        /// </summary>
 
         [TestMethod]
         public void TestGetSeriesByIDNotFound()
@@ -102,6 +113,9 @@ namespace StatefulAPI.Tests
         }
 
 
+        /// <summary>
+        /// Verifies that PostSerie successfully creates a new series and returns a 201 Created result.
+        /// </summary>
         [TestMethod]
         public void TestPostSeries()
         {
@@ -135,6 +149,10 @@ namespace StatefulAPI.Tests
             controller.DeleteSerie(serieCreated.Serieid).Wait();
         }
 
+
+        /// <summary>
+        /// Verifies that PostSerie throws an AggregateException when a required field is missing.
+        /// </summary>
         [TestMethod]
         public void TestPostSeriesWithoutTitle()
         {
@@ -152,6 +170,10 @@ namespace StatefulAPI.Tests
             );
         }
 
+
+        /// <summary>
+        /// Verifies that PutSerie successfully updates an existing series and returns a 204 No Content result.
+        /// </summary>
         [TestMethod]
         public void TestPutSeries()
         {
@@ -190,6 +212,9 @@ namespace StatefulAPI.Tests
         }
 
 
+        /// <summary>
+        /// Verifies that PutSerie returns a 400 Bad Request result when the URL ID does not match the series ID.
+        /// </summary>
         [TestMethod]
         public void TestPutSeriesBadRequest()
         {
@@ -210,6 +235,9 @@ namespace StatefulAPI.Tests
         }
 
 
+        /// <summary>
+        /// Verifies that DeleteSerie successfully deletes an existing series and returns a 204 No Content result.
+        /// </summary>
         [TestMethod]
         public void TestDeleteSeries()
         {
@@ -237,6 +265,9 @@ namespace StatefulAPI.Tests
         }
 
 
+        /// <summary>
+        /// Verifies that DeleteSerie returns a 404 Not Found result when the requested ID does not exist.
+        /// </summary>
         [TestMethod]
         public void TestDeleteSeriesNotFound()
         {
