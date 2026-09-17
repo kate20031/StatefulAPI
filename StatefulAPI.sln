@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.37411.7 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.10.12201.205 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatefulAPI", "StatefulAPI\StatefulAPI.csproj", "{9DAB07B2-FF67-46D1-BD79-EA2B14DCD641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatefulAPI.Tests", "StatefulAPI.Tests\StatefulAPI.Tests.csproj", "{96038FE4-D246-431B-A132-C471190E4CD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9DAB07B2-FF67-46D1-BD79-EA2B14DCD641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DAB07B2-FF67-46D1-BD79-EA2B14DCD641}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DAB07B2-FF67-46D1-BD79-EA2B14DCD641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96038FE4-D246-431B-A132-C471190E4CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96038FE4-D246-431B-A132-C471190E4CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96038FE4-D246-431B-A132-C471190E4CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96038FE4-D246-431B-A132-C471190E4CD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
