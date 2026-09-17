@@ -45,16 +45,6 @@ namespace StatefulAPI.Tests
             Network = "HBO"
         }
     };
-        private void CompareSeries(Serie expected, Serie actual)
-        {
-            Assert.AreEqual(expected.Serieid, actual.Serieid);
-            Assert.AreEqual(expected.Titre, actual.Titre);
-            Assert.AreEqual(expected.Resume, actual.Resume);
-            Assert.AreEqual(expected.Nbsaisons, actual.Nbsaisons);
-            Assert.AreEqual(expected.Nbepisodes, actual.Nbepisodes);
-            Assert.AreEqual(expected.Anneecreation, actual.Anneecreation);
-            Assert.AreEqual(expected.Network, actual.Network);
-        }
         private SeriesController controller;
 
         public SeriesControllerTests()
@@ -83,7 +73,7 @@ namespace StatefulAPI.Tests
 
             for (int i = 0; i < expectedSeries.Count; i++)
             {
-                CompareSeries(expectedSeries[i], seriesRetrieved[i]);
+                Assert.AreEqual(expectedSeries[i], seriesRetrieved[i]);
             }
         }
 
@@ -96,7 +86,7 @@ namespace StatefulAPI.Tests
         {
             var result = controller.GetSerie(1).Result;
 
-            CompareSeries(expectedSeries[0], result.Value);
+            Assert.AreEqual(expectedSeries[0], result.Value);
         }
 
 
@@ -144,7 +134,7 @@ namespace StatefulAPI.Tests
 
             serie.Serieid = serieCreated.Serieid;
 
-            CompareSeries(serie, serieCreated);
+            Assert.AreEqual(serie, serieCreated);
 
             controller.DeleteSerie(serieCreated.Serieid).Wait();
         }
